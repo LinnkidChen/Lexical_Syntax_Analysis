@@ -4,7 +4,7 @@ Lexical Syntax Analysis
 Author: Linnkid_Chen
 contact: linnkid.chen@gmail.com
 
-linnkid_chen.github.∏
+Publish @ https://github.com/LinnkidChen/Lexical_Syntax_Analysis/tree/master
 
 */
 
