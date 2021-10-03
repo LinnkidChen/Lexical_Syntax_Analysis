@@ -9,3 +9,5 @@ Publish @ https://github.com/LinnkidChen/Lexical_Syntax_Analysis/tree/master
 */
 
 #include <iostream>
+
+int main() { std::cout << "HELLO,World" << std::endl; }
