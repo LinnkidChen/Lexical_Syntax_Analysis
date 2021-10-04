@@ -2,4 +2,4 @@
 
 Analysis::Analysis(std::string path) { inpt_file.open(path); }
 
-Analysis::run() {}
+void Analysis::run(error &error_, statistic &sta_) {}
