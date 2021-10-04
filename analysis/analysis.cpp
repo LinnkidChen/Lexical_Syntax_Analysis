@@ -1,5 +1,5 @@
 #include "analysis.h"
 
-Analysis::Analysis(std::istream _inpt_file) { inpt_file = _inpt_file; }
+Analysis::Analysis(std::string path) { inpt_file.open(path); }
 
 Analysis::run() {}

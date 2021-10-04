@@ -13,9 +13,9 @@ public:
 
 class Analysis {
 public:
-  Analysis(std::istream inpt_file);
+  Analysis(std::string path);
   ana_reslt_retn run();
 
 private:
-  std::istream inpt_file;
+  std::ifstream inpt_file;
 };
