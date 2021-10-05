@@ -13,6 +13,7 @@ Publish @ https://github.com/LinnkidChen/Lexical_Syntax_Analysis/tree/master
 #include <cstring>
 #include <fstream>
 #include <iostream>
+
 int main(int argc, char *argv[]) {
   std::ifstream input_strm;
   std::string input_pth;
@@ -36,6 +37,7 @@ int main(int argc, char *argv[]) {
   Analysis ana(input_pth);
   error eor;
   statistic sta;
+
   ana.run(eor, sta);
 
   return 0;

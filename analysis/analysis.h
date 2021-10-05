@@ -18,9 +18,11 @@ public:
   Analysis(std::string path);
   void run(error &error_, statistic &sta_);
   std::string read_one_word;
+  bool is_file_valid();
 
 private:
   std::ifstream inpt_file;
+  bool file_valid;
   int status; // distinguish current status. determine whether it is a comment;
   // 1 for not comment; 2 for // comment; 3 for /*comment;
 };
