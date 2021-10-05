@@ -1,3 +1,12 @@
 /Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/CMakeFiles/rebuild_cache.dir
 /Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/CMakeFiles/edit_cache.dir
 /Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/CMakeFiles/LSA.dir
+/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/analysis/CMakeFiles/rebuild_cache.dir
+/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/analysis/CMakeFiles/edit_cache.dir
+/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/analysis/CMakeFiles/analysis_lib.dir
+/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/analysis/error/CMakeFiles/rebuild_cache.dir
+/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/analysis/error/CMakeFiles/edit_cache.dir
+/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/analysis/error/CMakeFiles/error_lib.dir
+/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/analysis/statistics/CMakeFiles/rebuild_cache.dir
+/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/analysis/statistics/CMakeFiles/edit_cache.dir
+/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/analysis/statistics/CMakeFiles/sta_lib.dir

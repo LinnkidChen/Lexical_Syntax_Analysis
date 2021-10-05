@@ -8,6 +8,8 @@ Publish @ https://github.com/LinnkidChen/Lexical_Syntax_Analysis/tree/master
 
 */
 
+#include "analysis/analysis.cpp"
+#include "analysis/analysis.h"
 #include <cstring>
 #include <fstream>
 #include <iostream>
@@ -30,6 +32,11 @@ int main(int argc, char *argv[]) {
     std::cout << "Invalid parameters.\n";
     break;
   }
+
+  Analysis ana(input_pth);
+  error eor;
+  statistic sta;
+  ana.run(eor, sta);
 
   return 0;
 }

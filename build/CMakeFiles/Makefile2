@@ -64,21 +64,75 @@ CMAKE_BINARY_DIR = "/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs
 
 # The main recursive "all" target.
 all: CMakeFiles/LSA.dir/all
+all: analysis/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
-preinstall:
+preinstall: analysis/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
 clean: CMakeFiles/LSA.dir/clean
+clean: analysis/clean
 .PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory analysis
+
+# Recursive "all" directory target.
+analysis/all: analysis/CMakeFiles/analysis_lib.dir/all
+analysis/all: analysis/error/all
+analysis/all: analysis/statistics/all
+.PHONY : analysis/all
+
+# Recursive "preinstall" directory target.
+analysis/preinstall: analysis/error/preinstall
+analysis/preinstall: analysis/statistics/preinstall
+.PHONY : analysis/preinstall
+
+# Recursive "clean" directory target.
+analysis/clean: analysis/CMakeFiles/analysis_lib.dir/clean
+analysis/clean: analysis/error/clean
+analysis/clean: analysis/statistics/clean
+.PHONY : analysis/clean
+
+#=============================================================================
+# Directory level rules for directory analysis/error
+
+# Recursive "all" directory target.
+analysis/error/all: analysis/error/CMakeFiles/error_lib.dir/all
+.PHONY : analysis/error/all
+
+# Recursive "preinstall" directory target.
+analysis/error/preinstall:
+.PHONY : analysis/error/preinstall
+
+# Recursive "clean" directory target.
+analysis/error/clean: analysis/error/CMakeFiles/error_lib.dir/clean
+.PHONY : analysis/error/clean
+
+#=============================================================================
+# Directory level rules for directory analysis/statistics
+
+# Recursive "all" directory target.
+analysis/statistics/all: analysis/statistics/CMakeFiles/sta_lib.dir/all
+.PHONY : analysis/statistics/all
+
+# Recursive "preinstall" directory target.
+analysis/statistics/preinstall:
+.PHONY : analysis/statistics/preinstall
+
+# Recursive "clean" directory target.
+analysis/statistics/clean: analysis/statistics/CMakeFiles/sta_lib.dir/clean
+.PHONY : analysis/statistics/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/LSA.dir
 
 # All Build rule for target.
-CMakeFiles/LSA.dir/all:
+CMakeFiles/LSA.dir/all: analysis/CMakeFiles/analysis_lib.dir/all
+CMakeFiles/LSA.dir/all: analysis/error/CMakeFiles/error_lib.dir/all
+CMakeFiles/LSA.dir/all: analysis/statistics/CMakeFiles/sta_lib.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LSA.dir/build.make CMakeFiles/LSA.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LSA.dir/build.make CMakeFiles/LSA.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/CMakeFiles" --progress-num=1,2 "Built target LSA"
@@ -86,7 +140,7 @@ CMakeFiles/LSA.dir/all:
 
 # Build rule for subdir invocation for target.
 CMakeFiles/LSA.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/CMakeFiles" 2
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/CMakeFiles" 8
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/LSA.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/CMakeFiles" 0
 .PHONY : CMakeFiles/LSA.dir/rule
@@ -99,6 +153,85 @@ LSA: CMakeFiles/LSA.dir/rule
 CMakeFiles/LSA.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LSA.dir/build.make CMakeFiles/LSA.dir/clean
 .PHONY : CMakeFiles/LSA.dir/clean
+
+#=============================================================================
+# Target rules for target analysis/CMakeFiles/analysis_lib.dir
+
+# All Build rule for target.
+analysis/CMakeFiles/analysis_lib.dir/all: analysis/error/CMakeFiles/error_lib.dir/all
+analysis/CMakeFiles/analysis_lib.dir/all: analysis/statistics/CMakeFiles/sta_lib.dir/all
+	$(MAKE) $(MAKESILENT) -f analysis/CMakeFiles/analysis_lib.dir/build.make analysis/CMakeFiles/analysis_lib.dir/depend
+	$(MAKE) $(MAKESILENT) -f analysis/CMakeFiles/analysis_lib.dir/build.make analysis/CMakeFiles/analysis_lib.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/CMakeFiles" --progress-num=3,4 "Built target analysis_lib"
+.PHONY : analysis/CMakeFiles/analysis_lib.dir/all
+
+# Build rule for subdir invocation for target.
+analysis/CMakeFiles/analysis_lib.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/CMakeFiles" 6
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 analysis/CMakeFiles/analysis_lib.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/CMakeFiles" 0
+.PHONY : analysis/CMakeFiles/analysis_lib.dir/rule
+
+# Convenience name for target.
+analysis_lib: analysis/CMakeFiles/analysis_lib.dir/rule
+.PHONY : analysis_lib
+
+# clean rule for target.
+analysis/CMakeFiles/analysis_lib.dir/clean:
+	$(MAKE) $(MAKESILENT) -f analysis/CMakeFiles/analysis_lib.dir/build.make analysis/CMakeFiles/analysis_lib.dir/clean
+.PHONY : analysis/CMakeFiles/analysis_lib.dir/clean
+
+#=============================================================================
+# Target rules for target analysis/error/CMakeFiles/error_lib.dir
+
+# All Build rule for target.
+analysis/error/CMakeFiles/error_lib.dir/all:
+	$(MAKE) $(MAKESILENT) -f analysis/error/CMakeFiles/error_lib.dir/build.make analysis/error/CMakeFiles/error_lib.dir/depend
+	$(MAKE) $(MAKESILENT) -f analysis/error/CMakeFiles/error_lib.dir/build.make analysis/error/CMakeFiles/error_lib.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/CMakeFiles" --progress-num=5,6 "Built target error_lib"
+.PHONY : analysis/error/CMakeFiles/error_lib.dir/all
+
+# Build rule for subdir invocation for target.
+analysis/error/CMakeFiles/error_lib.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/CMakeFiles" 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 analysis/error/CMakeFiles/error_lib.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/CMakeFiles" 0
+.PHONY : analysis/error/CMakeFiles/error_lib.dir/rule
+
+# Convenience name for target.
+error_lib: analysis/error/CMakeFiles/error_lib.dir/rule
+.PHONY : error_lib
+
+# clean rule for target.
+analysis/error/CMakeFiles/error_lib.dir/clean:
+	$(MAKE) $(MAKESILENT) -f analysis/error/CMakeFiles/error_lib.dir/build.make analysis/error/CMakeFiles/error_lib.dir/clean
+.PHONY : analysis/error/CMakeFiles/error_lib.dir/clean
+
+#=============================================================================
+# Target rules for target analysis/statistics/CMakeFiles/sta_lib.dir
+
+# All Build rule for target.
+analysis/statistics/CMakeFiles/sta_lib.dir/all:
+	$(MAKE) $(MAKESILENT) -f analysis/statistics/CMakeFiles/sta_lib.dir/build.make analysis/statistics/CMakeFiles/sta_lib.dir/depend
+	$(MAKE) $(MAKESILENT) -f analysis/statistics/CMakeFiles/sta_lib.dir/build.make analysis/statistics/CMakeFiles/sta_lib.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/CMakeFiles" --progress-num=7,8 "Built target sta_lib"
+.PHONY : analysis/statistics/CMakeFiles/sta_lib.dir/all
+
+# Build rule for subdir invocation for target.
+analysis/statistics/CMakeFiles/sta_lib.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/CMakeFiles" 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 analysis/statistics/CMakeFiles/sta_lib.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/CMakeFiles" 0
+.PHONY : analysis/statistics/CMakeFiles/sta_lib.dir/rule
+
+# Convenience name for target.
+sta_lib: analysis/statistics/CMakeFiles/sta_lib.dir/rule
+.PHONY : sta_lib
+
+# clean rule for target.
+analysis/statistics/CMakeFiles/sta_lib.dir/clean:
+	$(MAKE) $(MAKESILENT) -f analysis/statistics/CMakeFiles/sta_lib.dir/build.make analysis/statistics/CMakeFiles/sta_lib.dir/clean
+.PHONY : analysis/statistics/CMakeFiles/sta_lib.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

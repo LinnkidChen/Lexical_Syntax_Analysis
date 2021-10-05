@@ -1,3 +1,4 @@
+#pragma once
 #include "error/error.h"
 #include "statistics/statistic.h"
 #include <fstream>

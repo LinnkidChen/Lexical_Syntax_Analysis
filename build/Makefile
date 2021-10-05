@@ -129,6 +129,45 @@ LSA/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LSA.dir/build.make CMakeFiles/LSA.dir/build
 .PHONY : LSA/fast
 
+#=============================================================================
+# Target rules for targets named analysis_lib
+
+# Build rule for target.
+analysis_lib: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 analysis_lib
+.PHONY : analysis_lib
+
+# fast build rule for target.
+analysis_lib/fast:
+	$(MAKE) $(MAKESILENT) -f analysis/CMakeFiles/analysis_lib.dir/build.make analysis/CMakeFiles/analysis_lib.dir/build
+.PHONY : analysis_lib/fast
+
+#=============================================================================
+# Target rules for targets named error_lib
+
+# Build rule for target.
+error_lib: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 error_lib
+.PHONY : error_lib
+
+# fast build rule for target.
+error_lib/fast:
+	$(MAKE) $(MAKESILENT) -f analysis/error/CMakeFiles/error_lib.dir/build.make analysis/error/CMakeFiles/error_lib.dir/build
+.PHONY : error_lib/fast
+
+#=============================================================================
+# Target rules for targets named sta_lib
+
+# Build rule for target.
+sta_lib: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 sta_lib
+.PHONY : sta_lib
+
+# fast build rule for target.
+sta_lib/fast:
+	$(MAKE) $(MAKESILENT) -f analysis/statistics/CMakeFiles/sta_lib.dir/build.make analysis/statistics/CMakeFiles/sta_lib.dir/build
+.PHONY : sta_lib/fast
+
 Main.o: Main.cpp.o
 .PHONY : Main.o
 
@@ -162,6 +201,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... LSA"
+	@echo "... analysis_lib"
+	@echo "... error_lib"
+	@echo "... sta_lib"
 	@echo "... Main.o"
 	@echo "... Main.i"
 	@echo "... Main.s"

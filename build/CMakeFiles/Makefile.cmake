@@ -8,6 +8,9 @@ set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
   "../CMakeLists.txt"
+  "../analysis/CMakeLists.txt"
+  "../analysis/error/CMakeLists.txt"
+  "../analysis/statistics/CMakeLists.txt"
   "CMakeFiles/3.20.2/CMakeCCompiler.cmake"
   "CMakeFiles/3.20.2/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.20.2/CMakeSystem.cmake"
@@ -43,9 +46,15 @@ set(CMAKE_MAKEFILE_OUTPUTS
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
+  "analysis/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "analysis/error/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "analysis/statistics/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/LSA.dir/DependInfo.cmake"
+  "analysis/CMakeFiles/analysis_lib.dir/DependInfo.cmake"
+  "analysis/error/CMakeFiles/error_lib.dir/DependInfo.cmake"
+  "analysis/statistics/CMakeFiles/sta_lib.dir/DependInfo.cmake"
   )
