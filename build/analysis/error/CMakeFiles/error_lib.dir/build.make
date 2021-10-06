@@ -73,15 +73,15 @@ analysis/error/CMakeFiles/error_lib.dir/error.cpp.o: analysis/error/CMakeFiles/e
 analysis/error/CMakeFiles/error_lib.dir/error.cpp.o: ../analysis/error/error.cpp
 analysis/error/CMakeFiles/error_lib.dir/error.cpp.o: analysis/error/CMakeFiles/error_lib.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object analysis/error/CMakeFiles/error_lib.dir/error.cpp.o"
-	cd "/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/analysis/error" && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT analysis/error/CMakeFiles/error_lib.dir/error.cpp.o -MF CMakeFiles/error_lib.dir/error.cpp.o.d -o CMakeFiles/error_lib.dir/error.cpp.o -c "/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/analysis/error/error.cpp"
+	cd "/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/analysis/error" && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT analysis/error/CMakeFiles/error_lib.dir/error.cpp.o -MF CMakeFiles/error_lib.dir/error.cpp.o.d -o CMakeFiles/error_lib.dir/error.cpp.o -c "/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/analysis/error/error.cpp"
 
 analysis/error/CMakeFiles/error_lib.dir/error.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/error_lib.dir/error.cpp.i"
-	cd "/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/analysis/error" && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/analysis/error/error.cpp" > CMakeFiles/error_lib.dir/error.cpp.i
+	cd "/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/analysis/error" && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/analysis/error/error.cpp" > CMakeFiles/error_lib.dir/error.cpp.i
 
 analysis/error/CMakeFiles/error_lib.dir/error.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/error_lib.dir/error.cpp.s"
-	cd "/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/analysis/error" && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/analysis/error/error.cpp" -o CMakeFiles/error_lib.dir/error.cpp.s
+	cd "/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/analysis/error" && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/analysis/error/error.cpp" -o CMakeFiles/error_lib.dir/error.cpp.s
 
 # Object files for target error_lib
 error_lib_OBJECTS = \

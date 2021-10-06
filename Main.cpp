@@ -38,7 +38,10 @@ int main(int argc, char *argv[]) {
   error eor;
   statistic sta;
 
-  ana.run(eor, sta);
+  if (ana.is_file_valid()) {
+    ana.run(eor, sta);
+  } else
+    std::cout << "Invalid file name\n";
 
   return 0;
 }

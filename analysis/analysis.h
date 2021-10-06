@@ -5,6 +5,14 @@
 #include <iostream>
 #include <istream>
 #include <string>
+
+#define NUM 0
+#define ID 1
+#define KEYWORD 2
+#define ERROR 3
+#define COMMENT 4
+#define UNCOMMENT 5
+
 class ana_reslt_retn {
 public:
   std::string note, attribute;
@@ -19,6 +27,8 @@ public:
   void run(error &error_, statistic &sta_);
   std::string read_one_word;
   bool is_file_valid();
+  void read_word(ana_reslt_retn &reslt);
+  void print_reslt(ana_reslt_retn const &reslt);
 
 private:
   std::ifstream inpt_file;

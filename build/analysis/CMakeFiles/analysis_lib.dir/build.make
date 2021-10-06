@@ -73,15 +73,15 @@ analysis/CMakeFiles/analysis_lib.dir/analysis.cpp.o: analysis/CMakeFiles/analysi
 analysis/CMakeFiles/analysis_lib.dir/analysis.cpp.o: ../analysis/analysis.cpp
 analysis/CMakeFiles/analysis_lib.dir/analysis.cpp.o: analysis/CMakeFiles/analysis_lib.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object analysis/CMakeFiles/analysis_lib.dir/analysis.cpp.o"
-	cd "/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/analysis" && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT analysis/CMakeFiles/analysis_lib.dir/analysis.cpp.o -MF CMakeFiles/analysis_lib.dir/analysis.cpp.o.d -o CMakeFiles/analysis_lib.dir/analysis.cpp.o -c "/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/analysis/analysis.cpp"
+	cd "/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/analysis" && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT analysis/CMakeFiles/analysis_lib.dir/analysis.cpp.o -MF CMakeFiles/analysis_lib.dir/analysis.cpp.o.d -o CMakeFiles/analysis_lib.dir/analysis.cpp.o -c "/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/analysis/analysis.cpp"
 
 analysis/CMakeFiles/analysis_lib.dir/analysis.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/analysis_lib.dir/analysis.cpp.i"
-	cd "/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/analysis" && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/analysis/analysis.cpp" > CMakeFiles/analysis_lib.dir/analysis.cpp.i
+	cd "/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/analysis" && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/analysis/analysis.cpp" > CMakeFiles/analysis_lib.dir/analysis.cpp.i
 
 analysis/CMakeFiles/analysis_lib.dir/analysis.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/analysis_lib.dir/analysis.cpp.s"
-	cd "/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/analysis" && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/analysis/analysis.cpp" -o CMakeFiles/analysis_lib.dir/analysis.cpp.s
+	cd "/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/analysis" && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/analysis/analysis.cpp" -o CMakeFiles/analysis_lib.dir/analysis.cpp.s
 
 # Object files for target analysis_lib
 analysis_lib_OBJECTS = \
