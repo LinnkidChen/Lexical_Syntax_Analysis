@@ -11,14 +11,13 @@
 #define KEYWORD 2
 #define ERROR 3
 #define COMMENT 4
-#define UNCOMMENT 5
 
 class ana_reslt_retn {
 public:
   std::string note, attribute;
   std::string error;
-  int val;
   int type;
+  int val;
 };
 
 class Analysis {
@@ -29,6 +28,7 @@ public:
   bool is_file_valid();
   void read_word(ana_reslt_retn &reslt);
   void print_reslt(ana_reslt_retn const &reslt);
+  void reset_reslt(ana_reslt_retn &reslt);
 
 private:
   std::ifstream inpt_file;
