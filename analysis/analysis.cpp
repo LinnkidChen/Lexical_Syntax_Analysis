@@ -6,6 +6,14 @@
 Analysis::Analysis(std::string path) {
   inpt_file.open(path);
   file_valid = inpt_file.is_open();
+
+  std::ifstream kyw_file;
+  std::string kyw;
+  kyw_file.open("keyword.txt");
+  while (!kyw_file.eof()) {
+    kyw_file >> kyw;
+    keyword.insert(kyw);
+  }
 }
 
 void Analysis::run(error &error_, statistic &sta_) {
@@ -51,6 +59,93 @@ void Analysis::read_word(ana_reslt_retn &reslt) {
         if (c == '*' && inpt_file.peek() == '/')
           c = inpt_file.get();
         break;
+      }
+    }
+
+    if (reslt.type < 0) { // not a comment
+                          // regonize id
+      if (isalpha(c) || c == '_') {
+        while (isalpha(c) || isdigit(c) || c == '_') {
+          reslt.note += c;
+          c = inpt_file.get();
+        }
+        if (keyword.find(reslt.note) == keyword.end()) { // not a keyword
+          reslt.attribute = "ID";
+          reslt.type = ID;
+        } else {
+          reslt.attribute = "KEYWORD";
+          reslt.type = KEYWORD;
+        }
+      } else if (isnumber(c)) {
+        reslt.note += c;
+        int state = 1;
+        while (state > 0) {
+          switch (state) {
+          case 1:
+            if (isnumber(inpt_file.peek())) {
+              c = inpt_file.get();
+              reslt.note += c;
+              state = 1;
+            } else if (inpt_file.peek() == '.') {
+              c = inpt_file.get();
+              reslt.note += c;
+              state = 2;
+            } else if (inpt_file.peek() == 'E' || inpt_file.peek() == 'e') {
+              c = inpt_file.get();
+              reslt.note += c;
+              state = 4;
+            } else
+              state = 0;
+            break;
+          case 2:
+            if (isnumber(inpt_file.peek())) {
+              c = inpt_file.get();
+              reslt.note += c;
+              state = 3;
+            }
+            // else error!
+            break;
+          case 3:
+            if (isnumber(inpt_file.peek())) {
+              c = inpt_file.get();
+              reslt.note += c;
+              state = 3;
+            } else if (inpt_file.peek() == 'E' || inpt_file.peek() == 'e') {
+              c = inpt_file.get();
+              reslt.note += c;
+              state = 4;
+            } else
+              state = 0;
+            break;
+          case 4:
+            if (inpt_file.peek() == '+' || inpt_file.peek() == '-') {
+              c = inpt_file.get();
+              reslt.note += c;
+              state = 6;
+            } else if (isnumber(inpt_file.peek())) {
+              c = inpt_file.get();
+              reslt.note += c;
+              state = 5;
+            }
+            break;
+            // else error
+          case 5:
+            if (isnumber(inpt_file.peek())) {
+              c = inpt_file.get();
+              reslt.note += c;
+              state = 5;
+            } else
+              state = 0;
+            break;
+          case 6:
+            if (isnumber(inpt_file.peek())) {
+              c = inpt_file.get();
+              reslt.note += c;
+              state = 5;
+            }
+            // else error
+          }
+        }
       }
     }
   }
