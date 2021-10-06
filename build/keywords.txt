@@ -1,0 +1,13 @@
+void
+main
+short
+long
+int
+double
+float
+while
+if
+else
+for
+break
+return

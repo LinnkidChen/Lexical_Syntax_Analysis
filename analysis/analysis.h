@@ -28,8 +28,8 @@ public:
   std::string read_one_word;
   bool is_file_valid();
   void read_word(ana_reslt_retn &reslt);
+
   void print_reslt(ana_reslt_retn const &reslt);
-  void reset_reslt(ana_reslt_retn &reslt);
 
 private:
   std::ifstream inpt_file;

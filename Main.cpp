@@ -9,7 +9,7 @@ Publish @ https://github.com/LinnkidChen/Lexical_Syntax_Analysis/tree/master
 */
 
 #include "analysis/analysis.cpp"
-#include "analysis/analysis.h"
+// #include "analysis/analysis.h"
 #include <cstring>
 #include <fstream>
 #include <iostream>
@@ -18,7 +18,6 @@ int main(int argc, char *argv[]) {
   std::ifstream input_strm;
   std::string input_pth;
   int statistic_output = 0; // determine whether output statistic information
-
   switch (argc) {
   case 1:
     input_pth = argv[0];
