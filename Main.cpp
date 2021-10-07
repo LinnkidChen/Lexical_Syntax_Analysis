@@ -19,13 +19,13 @@ int main(int argc, char *argv[]) {
   std::string input_pth;
   int statistic_output = 0; // determine whether output statistic information
   switch (argc) {
-  case 1:
-    input_pth = argv[0];
-    break;
   case 2:
-    if (argv[0][1] == 's') // view addition statics
-      statistic_output = 1;
     input_pth = argv[1];
+    break;
+  case 3:
+    if (argv[1][1] == 's') // view addition statics
+      statistic_output = 1;
+    input_pth = argv[2];
     break;
 
   default:
@@ -43,5 +43,7 @@ int main(int argc, char *argv[]) {
     std::cout << "Invalid file name\n";
 
   eor.print_error();
+  if (statistic_output)
+    sta.print_sta();
   return 0;
 }

@@ -28,11 +28,30 @@ void Analysis::run(error &error_, statistic &sta_) {
   ana_reslt_retn result;
   while (!inpt_file.eof()) {
     read_word(result, error_);
-    if (result.type == ERROR) {
-    } else if (result.type == COMMENT) {
-    } else {
+    switch (result.type) {
+    case NUM:
+      sta_.num++;
       print_reslt(result);
+      break;
+    case ID:
+      sta_.id++;
+      print_reslt(result);
+      break;
+    case KEYWORD:
+      sta_.keyword++;
+      print_reslt(result);
+      break;
+    case op:
+      sta_.op_++;
+      print_reslt(result);
+      break;
+    case COMMENT:
+      sta_.comment += result.val;
+      break;
+    case ERROR:
+      sta_.error++;
     }
+
     reset_reslt(&result);
   }
 }
