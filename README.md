@@ -3,6 +3,8 @@
 ## to run: 
 `LSA Path/to/Source/File`
 
+### OCT7 version 1 finished
+
 ### type of reslt_retn:
 1. 标识符（ID）
 2. 常数
