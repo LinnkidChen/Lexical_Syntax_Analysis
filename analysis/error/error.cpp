@@ -5,6 +5,7 @@ void error::print_error() {
   it = errors.begin();
   while (it != errors.end()) {
     std::cout << "Error: " << *it << std::endl;
+    it++;
   }
 }
 

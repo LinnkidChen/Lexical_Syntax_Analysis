@@ -3,6 +3,9 @@ hello world
 */
 
 int main(){
-    printf("hello,world!\n");
+    0da;
+    printf("hello,world!");
     return 0;
+    1+1=2;
+    3-33=4;
 }

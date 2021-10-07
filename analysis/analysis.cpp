@@ -72,9 +72,11 @@ void Analysis::read_word(ana_reslt_retn &reslt, error &error_) {
   if (reslt.type < 0) { // not a comment
                         // regonize id
     if (isalpha(c) || c == '_') {
-      while (isalpha(c) || isdigit(c) || c == '_') {
-        reslt.note += c;
+      reslt.note += c;
+      while (isalpha(inpt_file.peek()) || isdigit(inpt_file.peek()) ||
+             inpt_file.peek() == '_') {
         c = inpt_file.get();
+        reslt.note += c;
       }
       if (keyword.find(reslt.note) == keyword.end()) { // not a keyword
         reslt.attribute = "ID";
@@ -101,8 +103,17 @@ void Analysis::read_word(ana_reslt_retn &reslt, error &error_) {
             c = inpt_file.get();
             reslt.note += c;
             state = 4;
-          } else
+          } else {
+            if (std::isalnum(inpt_file.peek())) {
+              reslt.type = ERROR;
+              while (std::isalnum(inpt_file.peek())) {
+                c = inpt_file.get();
+                reslt.note += c;
+              }
+              error_.add_error("INVALID WORD: " + reslt.note);
+            }
             state = 0;
+          }
           break;
         case 2:
           if (isnumber(inpt_file.peek())) {
@@ -143,8 +154,9 @@ void Analysis::read_word(ana_reslt_retn &reslt, error &error_) {
 
           else {
             while (std::isalnum(inpt_file.peek()) || inpt_file.peek() == '_') {
-              reslt.note += c;
+
               c = inpt_file.get();
+              reslt.note += c;
             }
             reslt.type = ERROR;
             error_.add_error("Invalid word: " + reslt.note);
@@ -165,16 +177,19 @@ void Analysis::read_word(ana_reslt_retn &reslt, error &error_) {
             state = 5;
           } else {
             while (std::isalnum(inpt_file.peek()) || inpt_file.peek() == '_') {
-              reslt.note += c;
+
               c = inpt_file.get();
+              reslt.note += c;
             }
             reslt.type = ERROR;
             error_.add_error("Invalid word: " + reslt.note);
           }
         }
       }
-      reslt.type = NUM;
-      reslt.attribute = "NUM";
+      if (reslt.type < 0) {
+        reslt.type = NUM;
+        reslt.attribute = "NUM";
+      }
     }
   }
   if (reslt.type < 0) {
@@ -248,6 +263,16 @@ void Analysis::read_word(ana_reslt_retn &reslt, error &error_) {
       reslt.note = "/";
       reslt.type = op;
       break;
+    case '{':
+      reslt.attribute = "";
+      reslt.note = "{";
+      reslt.type = op;
+      break;
+    case '}':
+      reslt.attribute = "";
+      reslt.note = "}";
+      reslt.type = op;
+      break;
     case '(':
       reslt.attribute = "";
       reslt.note = "(";
@@ -260,7 +285,7 @@ void Analysis::read_word(ana_reslt_retn &reslt, error &error_) {
       break;
     case 39: //'
       reslt.attribute = "";
-      reslt.note = "'";
+      reslt.note = "\'";
       reslt.type = op;
       break;
     case ';':
@@ -268,7 +293,22 @@ void Analysis::read_word(ana_reslt_retn &reslt, error &error_) {
       reslt.note = ";";
       reslt.type = op;
       break;
+    case ',':
+      reslt.attribute = "";
+      reslt.note = ",";
+      reslt.type = op;
+      break;
+    case '!':
+      reslt.attribute = "";
+      reslt.note = "!";
+      reslt.type = op;
+      break;
     default:
+    case '\"':
+      reslt.attribute = "";
+      reslt.note = "\"";
+      reslt.type = op;
+      break;
       reslt.note += c;
       error_.add_error("Illegal symbol: " + reslt.note);
       reslt.type = ERROR;
@@ -279,12 +319,16 @@ void Analysis::read_word(ana_reslt_retn &reslt, error &error_) {
 void Analysis::print_reslt(ana_reslt_retn const &reslt) {
   switch (reslt.type) {
   case NUM:
-    std::cout << reslt.attribute << "  " << reslt.note << std::endl;
+    std::cout << reslt.note << "  " << reslt.attribute << std::endl;
     break;
   case ID:
-    std::cout << reslt.attribute << "  " << reslt.note << std::endl;
+    std::cout << reslt.note << "  " << reslt.attribute << std::endl;
     break;
   case KEYWORD:
-    std::cout << reslt.attribute << "  " << reslt.note << std::endl;
+    std::cout << reslt.note << "  " << reslt.attribute << std::endl;
+    break;
+  case op:
+    std::cout << reslt.note << "  " << reslt.attribute << std::endl;
+    break;
   }
 }

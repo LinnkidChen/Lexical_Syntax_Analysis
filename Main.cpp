@@ -42,5 +42,6 @@ int main(int argc, char *argv[]) {
   } else
     std::cout << "Invalid file name\n";
 
+  eor.print_error();
   return 0;
 }
