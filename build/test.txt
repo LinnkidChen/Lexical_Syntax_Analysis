@@ -1,5 +1,8 @@
-/*dfdsafadsfads*/
+/*
+hello world
+*/
 
-33.5
-5
-adj
+int main(){
+    printf("hello,world!\n");
+    return 0;
+}

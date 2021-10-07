@@ -130,9 +130,9 @@ analysis/statistics/clean: analysis/statistics/CMakeFiles/sta_lib.dir/clean
 # Target rules for target CMakeFiles/LSA.dir
 
 # All Build rule for target.
+CMakeFiles/LSA.dir/all: analysis/CMakeFiles/analysis_lib.dir/all
 CMakeFiles/LSA.dir/all: analysis/error/CMakeFiles/error_lib.dir/all
 CMakeFiles/LSA.dir/all: analysis/statistics/CMakeFiles/sta_lib.dir/all
-CMakeFiles/LSA.dir/all: analysis/CMakeFiles/analysis_lib.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LSA.dir/build.make CMakeFiles/LSA.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LSA.dir/build.make CMakeFiles/LSA.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/tongchen/Library/Mobile Documents/com~apple~CloudDocs/Documents/Code/Lexical_Syntax_Analysis/build/CMakeFiles" --progress-num=1,2 "Built target LSA"

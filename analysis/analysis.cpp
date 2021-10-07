@@ -1,5 +1,6 @@
 
 #include "analysis.h"
+#include <cctype>
 #include <fstream>
 #include <iostream>
 
@@ -26,7 +27,7 @@ void Analysis::run(error &error_, statistic &sta_) {
   //   int state = 0; // state: 0 normal 1 line_comment; 2 block_comment
   ana_reslt_retn result;
   while (!inpt_file.eof()) {
-    read_word(result);
+    read_word(result, error_);
     if (result.type == ERROR) {
     } else if (result.type == COMMENT) {
     } else {
@@ -37,7 +38,7 @@ void Analysis::run(error &error_, statistic &sta_) {
 }
 
 bool Analysis::is_file_valid() { return file_valid; }
-void Analysis::read_word(ana_reslt_retn &reslt) {
+void Analysis::read_word(ana_reslt_retn &reslt, error &error_) {
   reslt.type = -1;
   reslt.val = 0;
   char c;
@@ -108,8 +109,14 @@ void Analysis::read_word(ana_reslt_retn &reslt) {
             c = inpt_file.get();
             reslt.note += c;
             state = 3;
+          } else {
+            while (std::isalnum(inpt_file.peek()) || inpt_file.peek() == '_') {
+              reslt.note += c;
+              c = inpt_file.get();
+            }
+            reslt.type = ERROR;
+            error_.add_error("Invalid word: " + reslt.note);
           }
-          // else error!
           break;
         case 3:
           if (isnumber(inpt_file.peek())) {
@@ -133,8 +140,16 @@ void Analysis::read_word(ana_reslt_retn &reslt) {
             reslt.note += c;
             state = 5;
           }
+
+          else {
+            while (std::isalnum(inpt_file.peek()) || inpt_file.peek() == '_') {
+              reslt.note += c;
+              c = inpt_file.get();
+            }
+            reslt.type = ERROR;
+            error_.add_error("Invalid word: " + reslt.note);
+          }
           break;
-          // else error
         case 5:
           if (isnumber(inpt_file.peek())) {
             c = inpt_file.get();
@@ -148,15 +163,119 @@ void Analysis::read_word(ana_reslt_retn &reslt) {
             c = inpt_file.get();
             reslt.note += c;
             state = 5;
+          } else {
+            while (std::isalnum(inpt_file.peek()) || inpt_file.peek() == '_') {
+              reslt.note += c;
+              c = inpt_file.get();
+            }
+            reslt.type = ERROR;
+            error_.add_error("Invalid word: " + reslt.note);
           }
-          // else error
         }
       }
       reslt.type = NUM;
       reslt.attribute = "NUM";
     }
   }
+  if (reslt.type < 0) {
+    // relop
+    if (c == '<') {
+      switch (inpt_file.peek()) {
+      case '=':
+        reslt.attribute = "LE";
+        reslt.note = "relop";
+        reslt.type = op;
+        c = inpt_file.get();
+        break;
+      case '>':
+        reslt.attribute = "NE";
+        reslt.note = "relop";
+        reslt.type = op;
+        c = inpt_file.get();
+        break;
+      default:
+        reslt.attribute = "LT";
+        reslt.note = "relop";
+        reslt.type = op;
+      }
+
+    } else if (c == '=') {
+      reslt.attribute = "EQ";
+      reslt.note = "relop";
+      reslt.type = op;
+    } else if (c == '>') {
+      if (inpt_file.peek() == '=') {
+        reslt.attribute = "GE";
+        reslt.note = "relop";
+        reslt.type = op;
+        c = inpt_file.get();
+      } else {
+        reslt.attribute = "GT";
+        reslt.note = "relop";
+        reslt.type = op;
+      }
+    } else if (c == ':') {
+      if (inpt_file.peek() == '=') {
+        reslt.attribute = "";
+        reslt.note = "assign-op";
+        reslt.type = op;
+      } else {
+        reslt.attribute = "";
+        reslt.note = ":";
+        reslt.type = op;
+      }
+    }
+  }
+  if (reslt.type < 0) {
+    switch (c) {
+    case '+':
+      reslt.attribute = "";
+      reslt.note = "+";
+      reslt.type = op;
+      break;
+    case '-':
+      reslt.attribute = "";
+      reslt.note = "-";
+      reslt.type = op;
+      break;
+    case '*':
+      reslt.attribute = "";
+      reslt.note = "*";
+      reslt.type = op;
+      break;
+    case '/':
+      reslt.attribute = "";
+      reslt.note = "/";
+      reslt.type = op;
+      break;
+    case '(':
+      reslt.attribute = "";
+      reslt.note = "(";
+      reslt.type = op;
+      break;
+    case ')':
+      reslt.attribute = "";
+      reslt.note = ")";
+      reslt.type = op;
+      break;
+    case 39: //'
+      reslt.attribute = "";
+      reslt.note = "'";
+      reslt.type = op;
+      break;
+    case ';':
+      reslt.attribute = "";
+      reslt.note = ";";
+      reslt.type = op;
+      break;
+    default:
+      reslt.note += c;
+      error_.add_error("Illegal symbol: " + reslt.note);
+      reslt.type = ERROR;
+    }
+  }
 }
+
 void Analysis::print_reslt(ana_reslt_retn const &reslt) {
   switch (reslt.type) {
   case NUM:
