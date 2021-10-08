@@ -1,0 +1,850 @@
+"  
+include  ID
+relop  LT
+windows  ID
+"  
+h  ID
+relop  GT
+"  
+pragma  ID
+pack  ID
+(  
+1  NUM
+)  
+typedef  ID
+struct  ID
+_BCF_HEADER  ID
+{  
+"  
+ULONG64  ID
+Flag1  ID
+;  
+"  
+ULONG64  ID
+Flag2  ID
+;  
+"  
+ULONG  ID
+Unknown  ID
+;  
+}  
+BCFHEADER  ID
+,  
+*  
+PBCFHEADER  ID
+;  
+typedef  ID
+struct  ID
+_BCF_RECORD  ID
+{  
+"  
+ULONG  ID
+Size  ID
+;  
+}  
+BCFRECORD  ID
+,  
+*  
+PBCFRECORD  ID
+;  
+"  
+pragma  ID
+pack  ID
+(  
+)  
+int  KEYWORD
+NewSize  ID
+relop  EQ
+0  NUM
+;  
+char  ID
+*  
+DeleteRecord  ID
+(  
+PVOID  ID
+mapAddress  ID
+,  
+char  ID
+*  
+TempBuf  ID
+,  
+int  KEYWORD
+StopSize  ID
+,  
+WCHAR  ID
+*  
+FileName  ID
+)  
+{  
+"  
+char  ID
+flag  ID
+"  
+16  NUM
+"  
+relop  EQ
+{  
+,  
+,  
+,  
+,  
+,  
+,  
+,  
+,  
+,  
+,  
+,  
+,  
+,  
+,  
+,  
+}  
+;  
+"  
+if  KEYWORD
+(  
+memcmp  ID
+(  
+mapAddress  ID
+,  
+flag  ID
+,  
+16  NUM
+)  
+)  
+"  
+{  
+"  
+"  
+printf  ID
+(  
+"  
+"  
+!  
+"  
+Maybe  ID
+it  ID
+'  
+s  ID
+not  ID
+RecentFileCache  ID
+"  
+bcf  ID
+"  
+)  
+;  
+"  
+"  
+exit  ID
+(  
+0  NUM
+)  
+;  
+"  
+}  
+"  
+memcpy  ID
+(  
+TempBuf  ID
+,  
+mapAddress  ID
+,  
+)  
+;  
+"  
+PBCFRECORD  ID
+currentRecordPtr  ID
+relop  EQ
+NULL  ID
+;  
+"  
+PBCFRECORD  ID
+nextRecordPtr  ID
+relop  EQ
+(  
+PBCFRECORD  ID
+)  
+(  
+(  
+PBYTE  ID
+)  
+mapAddress  ID
++  
+)  
+;  
+"  
+int  KEYWORD
+DeleteSize  ID
+relop  EQ
+0  NUM
+;  
+"  
+int  KEYWORD
+FlagSize  ID
+relop  EQ
+;  
+"  
+while  KEYWORD
+(  
+FlagSize  ID
++  
+DeleteSize  ID
+relop  LT
+StopSize  ID
+)  
+"  
+{  
+"  
+"  
+currentRecordPtr  ID
+relop  EQ
+nextRecordPtr  ID
+;  
+"  
+"  
+WCHAR  ID
+*  
+RecordName  ID
+relop  EQ
+new  ID
+WCHAR  ID
+"  
+nextRecordPtr  ID
+-  
+relop  GT
+Size  ID
++  
+1  NUM
+"  
+;  
+"  
+"  
+memcpy  ID
+(  
+RecordName  ID
+,  
+nextRecordPtr  ID
++  
+1  NUM
+,  
+nextRecordPtr  ID
+-  
+relop  GT
+Size  ID
+*  
+2  NUM
++  
+2  NUM
+)  
+;  
+"  
+"  
+printf  ID
+(  
+"  
+"  
+ws  ID
+"  
+n  ID
+"  
+,  
+RecordName  ID
+)  
+;  
+"  
+"  
+if  KEYWORD
+(  
+wcscmp  ID
+(  
+RecordName  ID
+,  
+FileName  ID
+)  
+relop  EQ
+relop  EQ
+0  NUM
+)  
+"  
+"  
+{  
+"  
+"  
+"  
+printf  ID
+(  
+"  
+"  
++  
+"  
+Data  ID
+found  ID
+:  
+"  
+ws  ID
+"  
+n  ID
+"  
+,  
+RecordName  ID
+)  
+;  
+"  
+"  
+"  
+DeleteSize  ID
++  
+relop  EQ
+nextRecordPtr  ID
+-  
+relop  GT
+Size  ID
+*  
+2  NUM
++  
+6  NUM
+;  
+"  
+"  
+}  
+"  
+"  
+else  KEYWORD
+"  
+"  
+{  
+"  
+"  
+"  
+memcpy  ID
+(  
+TempBuf  ID
++  
+FlagSize  ID
+,  
+currentRecordPtr  ID
+,  
+nextRecordPtr  ID
+-  
+relop  GT
+Size  ID
+*  
+2  NUM
++  
+6  NUM
+)  
+;  
+"  
+"  
+"  
+FlagSize  ID
++  
+relop  EQ
+nextRecordPtr  ID
+-  
+relop  GT
+Size  ID
+*  
+2  NUM
++  
+6  NUM
+;  
+"  
+"  
+}  
+"  
+"  
+nextRecordPtr  ID
+relop  EQ
+(  
+PBCFRECORD  ID
+)  
+(  
+(  
+PBYTE  ID
+)  
+nextRecordPtr  ID
++  
+nextRecordPtr  ID
+-  
+relop  GT
+Size  ID
+*  
+2  NUM
++  
+6  NUM
+)  
+;  
+"  
+}  
+"  
+NewSize  ID
+relop  EQ
+FlagSize  ID
+;  
+"  
+return  KEYWORD
+TempBuf  ID
+;  
+}  
+int  KEYWORD
+main  KEYWORD
+(  
+int  KEYWORD
+argc  ID
+,  
+char  ID
+*  
+argv  ID
+"  
+"  
+)  
+{  
+"  
+"  
+if  KEYWORD
+(  
+argc  ID
+!  
+relop  EQ
+3  NUM
+)  
+"  
+{  
+"  
+printf  ID
+(  
+"  
+"  
+nLoad  ID
+the  ID
+RecentFileCache  ID
+"  
+bcf  ID
+under  ID
+Win7  ID
+and  ID
+delete  ID
+the  ID
+selected  ID
+data  ID
+"  
+"  
+n  ID
+"  
+)  
+;  
+"  
+printf  ID
+(  
+"  
+The  ID
+new  ID
+file  ID
+will  ID
+be  ID
+saved  ID
+as  ID
+NewRecentFileCache  ID
+"  
+bcf  ID
+"  
+"  
+n  ID
+"  
+)  
+;  
+"  
+printf  ID
+(  
+"  
+Author  ID
+:  
+"  
+n  ID
+"  
+)  
+;  
+"  
+printf  ID
+(  
+"  
+Usage  ID
+:  
+"  
+n  ID
+"  
+)  
+;  
+"  
+printf  ID
+(  
+"  
+"  
+s  ID
+relop  LT
+file  ID
+path  ID
+of  ID
+RecentFileCache  ID
+"  
+bcf  ID
+relop  GT
+relop  LT
+file  ID
+name  ID
+to  ID
+be  ID
+deleted  ID
+relop  GT
+"  
+n  ID
+"  
+,  
+argv  ID
+"  
+0  NUM
+"  
+)  
+;  
+"  
+printf  ID
+(  
+"  
+eg  ID
+:  
+"  
+n  ID
+"  
+)  
+;  
+"  
+printf  ID
+(  
+"  
+"  
+s  ID
+C  ID
+:  
+"  
+"  
+Windows  ID
+"  
+"  
+AppCompat  ID
+"  
+"  
+Programs  ID
+"  
+"  
+RecentFileCache  ID
+"  
+bcf  ID
+c  ID
+:  
+"  
+"  
+windows  ID
+"  
+"  
+system32  ID
+"  
+"  
+msiexec  ID
+"  
+exe  ID
+"  
+n  ID
+"  
+n  ID
+"  
+,  
+argv  ID
+"  
+0  NUM
+"  
+)  
+;  
+"  
+printf  ID
+(  
+"  
+"  
+!  
+"  
+Wrong  ID
+parameter  ID
+"  
+n  ID
+"  
+)  
+;  
+"  
+return  KEYWORD
+0  NUM
+;  
+"  
+}  
+"  
+"  
+FILE  ID
+*  
+fp  ID
+;  
+"  
+int  KEYWORD
+err  ID
+relop  EQ
+fopen_s  ID
+(  
+"  
+fp  ID
+,  
+argv  ID
+"  
+1  NUM
+"  
+,  
+"  
+a  ID
++  
+"  
+)  
+;  
+"  
+if  KEYWORD
+(  
+err  ID
+!  
+relop  EQ
+0  NUM
+)  
+"  
+{  
+"  
+"  
+printf  ID
+(  
+"  
+openfile  ID
+error  ID
+!  
+"  
+)  
+;  
+"  
+"  
+return  KEYWORD
+0  NUM
+;  
+"  
+}  
+"  
+fseek  ID
+(  
+fp  ID
+,  
+0  NUM
+,  
+SEEK_END  ID
+)  
+;  
+"  
+int  KEYWORD
+len  ID
+relop  EQ
+ftell  ID
+(  
+fp  ID
+)  
+;  
+"  
+unsigned  ID
+char  ID
+*  
+buf  ID
+relop  EQ
+new  ID
+unsigned  ID
+char  ID
+"  
+len  ID
+"  
+;  
+"  
+fseek  ID
+(  
+fp  ID
+,  
+0  NUM
+,  
+SEEK_SET  ID
+)  
+;  
+"  
+fread  ID
+(  
+buf  ID
+,  
+len  ID
+,  
+1  NUM
+,  
+fp  ID
+)  
+;  
+"  
+wchar_t  ID
+FileName  ID
+"  
+100  NUM
+"  
+;  
+"  
+swprintf  ID
+(  
+FileName  ID
+,  
+100  NUM
+,  
+L  ID
+"  
+"  
+hs  ID
+"  
+,  
+argv  ID
+"  
+2  NUM
+"  
+)  
+;  
+"  
+char  ID
+*  
+buf2  ID
+relop  EQ
+new  ID
+char  ID
+"  
+len  ID
+"  
+;  
+"  
+buf2  ID
+relop  EQ
+DeleteRecord  ID
+(  
+buf  ID
+,  
+buf2  ID
+,  
+len  ID
+,  
+FileName  ID
+)  
+;  
+"  
+fclose  ID
+(  
+fp  ID
+)  
+;  
+"  
+FILE  ID
+*  
+fp2  ID
+;  
+"  
+err  ID
+relop  EQ
+fopen_s  ID
+(  
+"  
+fp2  ID
+,  
+"  
+NewRecentFileCache  ID
+"  
+bcf  ID
+"  
+,  
+"  
+wb  ID
++  
+"  
+)  
+;  
+"  
+if  KEYWORD
+(  
+err  ID
+!  
+relop  EQ
+0  NUM
+)  
+"  
+{  
+"  
+"  
+printf  ID
+(  
+"  
+createfile  ID
+error  ID
+!  
+"  
+)  
+;  
+"  
+"  
+return  KEYWORD
+0  NUM
+;  
+"  
+}  
+"  
+fwrite  ID
+(  
+buf2  ID
+,  
+NewSize  ID
+,  
+1  NUM
+,  
+fp2  ID
+)  
+;  
+"  
+fclose  ID
+(  
+fp2  ID
+)  
+;  
+"  
+return  KEYWORD
+0  NUM
+;  
+}  
+"  
+Error: INVALID WORD: 0xFE
+Error: INVALID WORD: 0xFF
+Error: INVALID WORD: 0xEE
+Error: INVALID WORD: 0xFF
+Error: INVALID WORD: 0x11
+Error: INVALID WORD: 0x22
+Error: INVALID WORD: 0x00
+Error: INVALID WORD: 0x00
+Error: INVALID WORD: 0x03
+Error: INVALID WORD: 0x00
+Error: INVALID WORD: 0x00
+Error: INVALID WORD: 0x00
+Error: INVALID WORD: 0x01
+Error: INVALID WORD: 0x00
+Error: INVALID WORD: 0x00
+Error: INVALID WORD: 0x00
+Error: INVALID WORD: 0x14
+Error: INVALID WORD: 0x14
+Error: INVALID WORD: 0x14
+Error: INVALID WORD: 3gstudent

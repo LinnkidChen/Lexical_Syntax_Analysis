@@ -1,0 +1,805 @@
+"  
+include  ID
+relop  LT
+windows  ID
+"  
+h  ID
+relop  GT
+"  
+include  ID
+relop  LT
+stdio  ID
+"  
+h  ID
+relop  GT
+"  
+include  ID
+relop  LT
+conio  ID
+"  
+h  ID
+relop  GT
+"  
+include  ID
+relop  LT
+tchar  ID
+"  
+h  ID
+relop  GT
+"  
+pragma  ID
+comment  ID
+(  
+lib  ID
+,  
+"  
+Advapi32  ID
+"  
+lib  ID
+"  
+)  
+"  
+define  ID
+BUF_SIZE  ID
+256  NUM
+int  KEYWORD
+main  KEYWORD
+(  
+int  KEYWORD
+argc  ID
+,  
+char  ID
+*  
+argv  ID
+"  
+"  
+)  
+{  
+"  
+if  KEYWORD
+(  
+argc  ID
+!  
+relop  EQ
+2  NUM
+)  
+"  
+{  
+"  
+"  
+printf  ID
+(  
+"  
+"  
+nCreateFileMapping  ID
+"  
+n  ID
+"  
+n  ID
+"  
+)  
+;  
+"  
+"  
+printf  ID
+(  
+"  
+Usage  ID
+:  
+"  
+n  ID
+"  
+)  
+;  
+"  
+"  
+printf  ID
+(  
+"  
+"  
+s  ID
+relop  LT
+string  ID
+relop  GT
+"  
+n  ID
+"  
+,  
+argv  ID
+"  
+0  NUM
+"  
+)  
+;  
+"  
+"  
+return  KEYWORD
+0  NUM
+;  
+"  
+}  
+"  
+HANDLE  ID
+hMapFile1  ID
+,  
+hMapFile2  ID
+;  
+"  
+char  ID
+*  
+pBuf  ID
+;  
+"  
+char  ID
+*  
+pBuf2  ID
+;  
+"  
+char  ID
+szName1  ID
+"  
+"  
+relop  EQ
+"  
+Global  ID
+"  
+"  
+SharedMappingObject1  ID
+"  
+;  
+"  
+char  ID
+szName2  ID
+"  
+"  
+relop  EQ
+"  
+Global  ID
+"  
+"  
+SharedMappingObject2  ID
+"  
+;  
+"  
+DWORD  ID
+EventRecordID  ID
+relop  EQ
+32  NUM
+;  
+"  
+DWORD  ID
+offset  ID
+relop  EQ
+;  
+"  
+char  ID
+szOffset  ID
+"  
+8  NUM
+"  
+;  
+"  
+sprintf_s  ID
+(  
+szOffset  ID
+,  
+"  
+"  
+d  ID
+"  
+,  
+offset  ID
+)  
+;  
+"  
+printf  ID
+(  
+"  
+"  
+*  
+"  
+Try  ID
+to  ID
+set  ID
+SecurityDescriptor  ID
+"  
+"  
+"  
+"  
+)  
+;  
+"  
+PSECURITY_DESCRIPTOR  ID
+pSec  ID
+relop  EQ
+(  
+PSECURITY_DESCRIPTOR  ID
+)  
+LocalAlloc  ID
+(  
+LMEM_FIXED  ID
+,  
+SECURITY_DESCRIPTOR_MIN_LENGTH  ID
+)  
+;  
+"  
+if  KEYWORD
+(  
+!  
+pSec  ID
+)  
+"  
+{  
+"  
+"  
+return  KEYWORD
+GetLastError  ID
+(  
+)  
+;  
+"  
+}  
+"  
+if  KEYWORD
+(  
+!  
+InitializeSecurityDescriptor  ID
+(  
+pSec  ID
+,  
+SECURITY_DESCRIPTOR_REVISION  ID
+)  
+)  
+"  
+{  
+"  
+"  
+LocalFree  ID
+(  
+pSec  ID
+)  
+;  
+"  
+"  
+return  KEYWORD
+GetLastError  ID
+(  
+)  
+;  
+"  
+}  
+"  
+if  KEYWORD
+(  
+!  
+SetSecurityDescriptorDacl  ID
+(  
+pSec  ID
+,  
+TRUE  ID
+,  
+NULL  ID
+,  
+TRUE  ID
+)  
+)  
+"  
+{  
+"  
+"  
+LocalFree  ID
+(  
+pSec  ID
+)  
+;  
+"  
+"  
+return  KEYWORD
+GetLastError  ID
+(  
+)  
+;  
+"  
+}  
+"  
+SECURITY_ATTRIBUTES  ID
+attr  ID
+;  
+"  
+attr  ID
+"  
+bInheritHandle  ID
+relop  EQ
+FALSE  ID
+;  
+"  
+attr  ID
+"  
+lpSecurityDescriptor  ID
+relop  EQ
+pSec  ID
+;  
+"  
+attr  ID
+"  
+nLength  ID
+relop  EQ
+sizeof  ID
+(  
+SECURITY_ATTRIBUTES  ID
+)  
+;  
+"  
+printf  ID
+(  
+"  
+Done  ID
+"  
+n  ID
+"  
+)  
+;  
+"  
+printf  ID
+(  
+"  
+"  
+*  
+"  
+Try  ID
+to  ID
+CreateFileMapping1  ID
+"  
+"  
+"  
+"  
+)  
+;  
+"  
+hMapFile1  ID
+relop  EQ
+CreateFileMapping  ID
+(  
+INVALID_HANDLE_VALUE  ID
+,  
+"  
+attr  ID
+,  
+PAGE_READWRITE  ID
+,  
+0  NUM
+,  
+BUF_SIZE  ID
+,  
+szName1  ID
+)  
+;  
+"  
+if  KEYWORD
+(  
+hMapFile1  ID
+relop  EQ
+relop  EQ
+NULL  ID
+)  
+"  
+{  
+"  
+"  
+printf  ID
+(  
+"  
+"  
+n  ID
+"  
+!  
+"  
+Could  ID
+not  ID
+create  ID
+file  ID
+mapping  ID
+object1  ID
+(  
+"  
+d  ID
+)  
+"  
+"  
+n  ID
+"  
+,  
+GetLastError  ID
+(  
+)  
+)  
+;  
+"  
+"  
+return  KEYWORD
+0  NUM
+;  
+"  
+}  
+"  
+pBuf  ID
+relop  EQ
+(  
+char  ID
+*  
+)  
+MapViewOfFile  ID
+(  
+hMapFile1  ID
+,  
+FILE_MAP_ALL_ACCESS  ID
+,  
+0  NUM
+,  
+0  NUM
+,  
+BUF_SIZE  ID
+)  
+;  
+"  
+if  KEYWORD
+(  
+pBuf  ID
+relop  EQ
+relop  EQ
+NULL  ID
+)  
+"  
+{  
+"  
+"  
+printf  ID
+(  
+"  
+"  
+n  ID
+"  
+!  
+"  
+Could  ID
+not  ID
+map  ID
+view  ID
+of  ID
+file1  ID
+(  
+"  
+d  ID
+)  
+"  
+"  
+n  ID
+"  
+,  
+GetLastError  ID
+(  
+)  
+)  
+;  
+"  
+"  
+CloseHandle  ID
+(  
+hMapFile1  ID
+)  
+;  
+"  
+"  
+return  KEYWORD
+1  NUM
+;  
+"  
+}  
+"  
+CopyMemory  ID
+(  
+(  
+PVOID  ID
+)  
+pBuf  ID
+,  
+argv  ID
+"  
+1  NUM
+"  
+,  
+strlen  ID
+(  
+argv  ID
+"  
+1  NUM
+"  
+)  
+)  
+;  
+"  
+printf  ID
+(  
+"  
+Done  ID
+"  
+n  ID
+"  
+)  
+;  
+"  
+printf  ID
+(  
+"  
+"  
+*  
+"  
+Try  ID
+to  ID
+CreateFileMapping2  ID
+"  
+"  
+"  
+"  
+)  
+;  
+"  
+hMapFile2  ID
+relop  EQ
+CreateFileMapping  ID
+(  
+INVALID_HANDLE_VALUE  ID
+,  
+"  
+attr  ID
+,  
+PAGE_READWRITE  ID
+,  
+0  NUM
+,  
+BUF_SIZE  ID
+,  
+szName2  ID
+)  
+;  
+"  
+if  KEYWORD
+(  
+hMapFile2  ID
+relop  EQ
+relop  EQ
+NULL  ID
+)  
+"  
+{  
+"  
+"  
+printf  ID
+(  
+"  
+"  
+n  ID
+"  
+!  
+"  
+Could  ID
+not  ID
+create  ID
+file  ID
+mapping  ID
+object2  ID
+(  
+"  
+d  ID
+)  
+"  
+"  
+n  ID
+"  
+,  
+GetLastError  ID
+(  
+)  
+)  
+;  
+"  
+"  
+return  KEYWORD
+0  NUM
+;  
+"  
+}  
+"  
+pBuf2  ID
+relop  EQ
+(  
+char  ID
+*  
+)  
+MapViewOfFile  ID
+(  
+hMapFile2  ID
+,  
+FILE_MAP_ALL_ACCESS  ID
+,  
+0  NUM
+,  
+0  NUM
+,  
+BUF_SIZE  ID
+)  
+;  
+"  
+if  KEYWORD
+(  
+pBuf2  ID
+relop  EQ
+relop  EQ
+NULL  ID
+)  
+"  
+{  
+"  
+"  
+printf  ID
+(  
+"  
+"  
+n  ID
+"  
+!  
+"  
+Could  ID
+not  ID
+map  ID
+view  ID
+of  ID
+file2  ID
+(  
+"  
+d  ID
+)  
+"  
+"  
+n  ID
+"  
+,  
+GetLastError  ID
+(  
+)  
+)  
+;  
+"  
+"  
+CloseHandle  ID
+(  
+hMapFile2  ID
+)  
+;  
+"  
+"  
+return  KEYWORD
+1  NUM
+;  
+"  
+}  
+"  
+CopyMemory  ID
+(  
+(  
+PVOID  ID
+)  
+pBuf2  ID
+,  
+szOffset  ID
+,  
+strlen  ID
+(  
+szOffset  ID
+)  
+)  
+;  
+"  
+"  
+printf  ID
+(  
+"  
+Done  ID
+"  
+n  ID
+"  
+)  
+;  
+"  
+printf  ID
+(  
+"  
+Waiting  ID
+"  
+"  
+"  
+"  
+n  ID
+"  
+)  
+;  
+printf  ID
+(  
+"  
+"  
++  
+"  
+You  ID
+can  ID
+input  ID
+something  ID
+to  ID
+stop  ID
+waiting  ID
+"  
+n  ID
+"  
+)  
+;  
+"  
+_getch  ID
+(  
+)  
+;  
+"  
+printf  ID
+(  
+"  
+"  
+*  
+"  
+Free  ID
+"  
+n  ID
+"  
+)  
+;  
+"  
+LocalFree  ID
+(  
+pSec  ID
+)  
+;  
+"  
+UnmapViewOfFile  ID
+(  
+pBuf  ID
+)  
+;  
+"  
+CloseHandle  ID
+(  
+hMapFile1  ID
+)  
+;  
+"  
+UnmapViewOfFile  ID
+(  
+pBuf2  ID
+)  
+;  
+"  
+CloseHandle  ID
+(  
+hMapFile2  ID
+)  
+;  
+"  
+return  KEYWORD
+0  NUM
+;  
+}  
+"  
+Error: INVALID WORD: 0x11
+
+NUM: 19
+ID: 236
+KEYWORD: 20
+OP: 522
+COMMENT: 0(lines)
+ERROR: 1

@@ -1,0 +1,1284 @@
+"  
+include  ID
+relop  LT
+windows  ID
+"  
+h  ID
+relop  GT
+"  
+include  ID
+relop  LT
+stdio  ID
+"  
+h  ID
+relop  GT
+"  
+include  ID
+relop  LT
+tlhelp32  ID
+"  
+h  ID
+relop  GT
+"  
+pragma  ID
+comment  ID
+(  
+lib  ID
+,  
+"  
+Advapi32  ID
+"  
+lib  ID
+"  
+)  
+BOOL  ID
+InjectDll  ID
+(  
+UINT32  ID
+ProcessId  ID
+,  
+char  ID
+*  
+DllPath  ID
+)  
+{  
+"  
+if  KEYWORD
+(  
+strstr  ID
+(  
+DllPath  ID
+,  
+"  
+"  
+"  
+"  
+"  
+"  
+)  
+!  
+relop  EQ
+0  NUM
+)  
+"  
+{  
+"  
+"  
+printf  ID
+(  
+"  
+"  
+!  
+"  
+Wrong  ID
+Dll  ID
+path  ID
+"  
+n  ID
+"  
+)  
+;  
+"  
+"  
+return  KEYWORD
+FALSE  ID
+;  
+"  
+}  
+"  
+if  KEYWORD
+(  
+strstr  ID
+(  
+DllPath  ID
+,  
+"  
+"  
+"  
+"  
+)  
+relop  EQ
+relop  EQ
+0  NUM
+)  
+"  
+{  
+"  
+"  
+printf  ID
+(  
+"  
+"  
+!  
+"  
+Need  ID
+Dll  ID
+full  ID
+path  ID
+"  
+n  ID
+"  
+)  
+;  
+"  
+"  
+return  KEYWORD
+FALSE  ID
+;  
+"  
+}  
+"  
+size_t  ID
+len  ID
+relop  EQ
+strlen  ID
+(  
+DllPath  ID
+)  
++  
+1  NUM
+;  
+"  
+LPVOID  ID
+pThreadData  ID
+relop  EQ
+NULL  ID
+;  
+"  
+HANDLE  ID
+ProcessHandle  ID
+relop  EQ
+NULL  ID
+;  
+"  
+HANDLE  ID
+hThread  ID
+relop  EQ
+NULL  ID
+;  
+"  
+BOOL  ID
+bRet  ID
+relop  EQ
+FALSE  ID
+;  
+"  
+__try  ID
+"  
+{  
+"  
+"  
+ProcessHandle  ID
+relop  EQ
+OpenProcess  ID
+(  
+PROCESS_ALL_ACCESS  ID
+,  
+FALSE  ID
+,  
+ProcessId  ID
+)  
+;  
+"  
+"  
+if  KEYWORD
+(  
+ProcessHandle  ID
+relop  EQ
+relop  EQ
+NULL  ID
+)  
+"  
+"  
+{  
+"  
+"  
+"  
+printf  ID
+(  
+"  
+"  
+!  
+"  
+OpenProcess  ID
+error  ID
+"  
+n  ID
+"  
+)  
+;  
+"  
+"  
+"  
+__leave  ID
+;  
+"  
+"  
+}  
+"  
+"  
+pThreadData  ID
+relop  EQ
+VirtualAllocEx  ID
+(  
+ProcessHandle  ID
+,  
+NULL  ID
+,  
+len  ID
+,  
+MEM_COMMIT  ID
+"  
+MEM_RESERVE  ID
+,  
+PAGE_READWRITE  ID
+)  
+;  
+"  
+"  
+if  KEYWORD
+(  
+pThreadData  ID
+relop  EQ
+relop  EQ
+NULL  ID
+)  
+"  
+"  
+{  
+"  
+"  
+"  
+CloseHandle  ID
+(  
+ProcessHandle  ID
+)  
+;  
+"  
+"  
+"  
+printf  ID
+(  
+"  
+"  
+!  
+"  
+VirtualAllocEx  ID
+error  ID
+"  
+n  ID
+"  
+)  
+;  
+"  
+"  
+"  
+__leave  ID
+;  
+"  
+"  
+}  
+"  
+"  
+BOOL  ID
+bWriteOK  ID
+relop  EQ
+WriteProcessMemory  ID
+(  
+ProcessHandle  ID
+,  
+pThreadData  ID
+,  
+DllPath  ID
+,  
+len  ID
+,  
+NULL  ID
+)  
+;  
+"  
+"  
+if  KEYWORD
+(  
+!  
+bWriteOK  ID
+)  
+"  
+"  
+{  
+"  
+"  
+"  
+CloseHandle  ID
+(  
+ProcessHandle  ID
+)  
+;  
+"  
+"  
+"  
+printf  ID
+(  
+"  
+"  
+!  
+"  
+WriteProcessMemory  ID
+error  ID
+"  
+n  ID
+"  
+)  
+;  
+"  
+"  
+"  
+__leave  ID
+;  
+"  
+"  
+}  
+"  
+"  
+LPTHREAD_START_ROUTINE  ID
+LoadLibraryAddress  ID
+relop  EQ
+NULL  ID
+;  
+"  
+"  
+HMODULE  ID
+Kernel32Module  ID
+relop  EQ
+GetModuleHandle  ID
+(  
+"  
+Kernel32  ID
+"  
+)  
+;  
+"  
+"  
+LoadLibraryAddress  ID
+relop  EQ
+(  
+LPTHREAD_START_ROUTINE  ID
+)  
+GetProcAddress  ID
+(  
+Kernel32Module  ID
+,  
+"  
+LoadLibraryA  ID
+"  
+)  
+;  
+"  
+"  
+hThread  ID
+relop  EQ
+CreateRemoteThread  ID
+(  
+ProcessHandle  ID
+,  
+NULL  ID
+,  
+0  NUM
+,  
+LoadLibraryAddress  ID
+,  
+pThreadData  ID
+,  
+0  NUM
+,  
+NULL  ID
+)  
+;  
+"  
+"  
+if  KEYWORD
+(  
+hThread  ID
+relop  EQ
+relop  EQ
+NULL  ID
+)  
+"  
+"  
+{  
+"  
+"  
+"  
+CloseHandle  ID
+(  
+ProcessHandle  ID
+)  
+;  
+"  
+"  
+"  
+printf  ID
+(  
+"  
+"  
+!  
+"  
+CreateRemoteThread  ID
+error  ID
+"  
+n  ID
+"  
+)  
+;  
+"  
+"  
+"  
+__leave  ID
+;  
+"  
+"  
+}  
+"  
+"  
+WaitForSingleObject  ID
+(  
+hThread  ID
+,  
+INFINITE  ID
+)  
+;  
+"  
+"  
+bRet  ID
+relop  EQ
+TRUE  ID
+;  
+"  
+}  
+"  
+__finally  ID
+"  
+{  
+"  
+"  
+if  KEYWORD
+(  
+pThreadData  ID
+!  
+relop  EQ
+NULL  ID
+)  
+"  
+"  
+"  
+VirtualFreeEx  ID
+(  
+ProcessHandle  ID
+,  
+pThreadData  ID
+,  
+0  NUM
+,  
+MEM_RELEASE  ID
+)  
+;  
+"  
+"  
+if  KEYWORD
+(  
+hThread  ID
+!  
+relop  EQ
+NULL  ID
+)  
+"  
+"  
+"  
+CloseHandle  ID
+(  
+hThread  ID
+)  
+;  
+"  
+"  
+if  KEYWORD
+(  
+ProcessHandle  ID
+!  
+relop  EQ
+NULL  ID
+)  
+"  
+"  
+"  
+CloseHandle  ID
+(  
+ProcessHandle  ID
+)  
+;  
+"  
+}  
+"  
+return  KEYWORD
+bRet  ID
+;  
+}  
+BOOL  ID
+FreeDll  ID
+(  
+UINT32  ID
+ProcessId  ID
+,  
+char  ID
+*  
+DllFullPath  ID
+)  
+{  
+"  
+BOOL  ID
+bMore  ID
+relop  EQ
+FALSE  ID
+,  
+bFound  ID
+relop  EQ
+FALSE  ID
+;  
+"  
+HANDLE  ID
+hSnapshot  ID
+;  
+"  
+HMODULE  ID
+hModule  ID
+relop  EQ
+NULL  ID
+;  
+"  
+MODULEENTRY32  ID
+me  ID
+relop  EQ
+{  
+sizeof  ID
+(  
+me  ID
+)  
+}  
+;  
+"  
+BOOL  ID
+bSuccess  ID
+relop  EQ
+FALSE  ID
+;  
+"  
+hSnapshot  ID
+relop  EQ
+CreateToolhelp32Snapshot  ID
+(  
+TH32CS_SNAPMODULE  ID
+,  
+ProcessId  ID
+)  
+;  
+"  
+bMore  ID
+relop  EQ
+Module32First  ID
+(  
+hSnapshot  ID
+,  
+"  
+me  ID
+)  
+;  
+"  
+for  KEYWORD
+(  
+;  
+bMore  ID
+;  
+bMore  ID
+relop  EQ
+Module32Next  ID
+(  
+hSnapshot  ID
+,  
+"  
+me  ID
+)  
+)  
+{  
+"  
+"  
+if  KEYWORD
+(  
+!  
+_tcsicmp  ID
+(  
+(  
+LPCTSTR  ID
+)  
+me  ID
+"  
+szModule  ID
+,  
+DllFullPath  ID
+)  
+"  
+"  
+!  
+_tcsicmp  ID
+(  
+(  
+LPCTSTR  ID
+)  
+me  ID
+"  
+szExePath  ID
+,  
+DllFullPath  ID
+)  
+)  
+"  
+"  
+{  
+"  
+"  
+"  
+bFound  ID
+relop  EQ
+TRUE  ID
+;  
+"  
+"  
+"  
+break  KEYWORD
+;  
+"  
+"  
+}  
+"  
+}  
+"  
+if  KEYWORD
+(  
+!  
+bFound  ID
+)  
+{  
+"  
+"  
+CloseHandle  ID
+(  
+hSnapshot  ID
+)  
+;  
+"  
+"  
+return  KEYWORD
+FALSE  ID
+;  
+"  
+}  
+"  
+BOOL  ID
+bRet  ID
+relop  EQ
+FALSE  ID
+;  
+"  
+HANDLE  ID
+ProcessHandle  ID
+relop  EQ
+NULL  ID
+;  
+"  
+__try  ID
+"  
+{  
+"  
+"  
+ProcessHandle  ID
+relop  EQ
+OpenProcess  ID
+(  
+PROCESS_ALL_ACCESS  ID
+,  
+FALSE  ID
+,  
+ProcessId  ID
+)  
+;  
+"  
+"  
+if  KEYWORD
+(  
+ProcessHandle  ID
+relop  EQ
+relop  EQ
+NULL  ID
+)  
+"  
+"  
+{  
+"  
+"  
+"  
+printf  ID
+(  
+"  
+"  
+!  
+"  
+OpenProcess  ID
+error  ID
+"  
+n  ID
+"  
+)  
+;  
+"  
+"  
+"  
+__leave  ID
+;  
+"  
+"  
+}  
+"  
+"  
+LPTHREAD_START_ROUTINE  ID
+FreeLibraryAddress  ID
+relop  EQ
+NULL  ID
+;  
+"  
+"  
+HMODULE  ID
+Kernel32Module  ID
+relop  EQ
+GetModuleHandle  ID
+(  
+"  
+Kernel32  ID
+"  
+)  
+;  
+"  
+"  
+FreeLibraryAddress  ID
+relop  EQ
+(  
+LPTHREAD_START_ROUTINE  ID
+)  
+GetProcAddress  ID
+(  
+Kernel32Module  ID
+,  
+"  
+FreeLibrary  ID
+"  
+)  
+;  
+"  
+"  
+"  
+HANDLE  ID
+hThread  ID
+relop  EQ
+NULL  ID
+;  
+"  
+"  
+hThread  ID
+relop  EQ
+CreateRemoteThread  ID
+(  
+ProcessHandle  ID
+,  
+NULL  ID
+,  
+0  NUM
+,  
+FreeLibraryAddress  ID
+,  
+me  ID
+"  
+modBaseAddr  ID
+,  
+0  NUM
+,  
+NULL  ID
+)  
+;  
+"  
+"  
+if  KEYWORD
+(  
+hThread  ID
+relop  EQ
+relop  EQ
+NULL  ID
+)  
+"  
+"  
+{  
+"  
+"  
+"  
+CloseHandle  ID
+(  
+ProcessHandle  ID
+)  
+;  
+"  
+"  
+"  
+printf  ID
+(  
+"  
+"  
+!  
+"  
+CreateRemoteThread  ID
+error  ID
+"  
+n  ID
+"  
+)  
+;  
+"  
+"  
+"  
+__leave  ID
+;  
+"  
+"  
+}  
+"  
+"  
+"  
+WaitForSingleObject  ID
+(  
+hThread  ID
+,  
+INFINITE  ID
+)  
+;  
+"  
+"  
+bRet  ID
+relop  EQ
+TRUE  ID
+;  
+"  
+}  
+"  
+__finally  ID
+"  
+{  
+"  
+"  
+if  KEYWORD
+(  
+ProcessHandle  ID
+!  
+relop  EQ
+NULL  ID
+)  
+"  
+"  
+"  
+CloseHandle  ID
+(  
+ProcessHandle  ID
+)  
+;  
+"  
+}  
+"  
+return  KEYWORD
+bRet  ID
+;  
+}  
+BOOL  ID
+EnableDebugPrivilege  ID
+(  
+BOOL  ID
+fEnable  ID
+)  
+{  
+"  
+BOOL  ID
+fOk  ID
+relop  EQ
+FALSE  ID
+;  
+"  
+HANDLE  ID
+hToken  ID
+;  
+"  
+if  KEYWORD
+(  
+OpenProcessToken  ID
+(  
+GetCurrentProcess  ID
+(  
+)  
+,  
+TOKEN_ADJUST_PRIVILEGES  ID
+,  
+"  
+hToken  ID
+)  
+)  
+"  
+{  
+"  
+"  
+TOKEN_PRIVILEGES  ID
+tp  ID
+;  
+"  
+"  
+tp  ID
+"  
+PrivilegeCount  ID
+relop  EQ
+1  NUM
+;  
+"  
+"  
+LookupPrivilegeValue  ID
+(  
+NULL  ID
+,  
+SE_DEBUG_NAME  ID
+,  
+"  
+tp  ID
+"  
+Privileges  ID
+"  
+0  NUM
+"  
+"  
+Luid  ID
+)  
+;  
+"  
+"  
+tp  ID
+"  
+Privileges  ID
+"  
+0  NUM
+"  
+"  
+Attributes  ID
+relop  EQ
+fEnable  ID
+"  
+SE_PRIVILEGE_ENABLED  ID
+:  
+0  NUM
+;  
+"  
+"  
+AdjustTokenPrivileges  ID
+(  
+hToken  ID
+,  
+FALSE  ID
+,  
+"  
+tp  ID
+,  
+sizeof  ID
+(  
+tp  ID
+)  
+,  
+NULL  ID
+,  
+NULL  ID
+)  
+;  
+"  
+"  
+fOk  ID
+relop  EQ
+(  
+GetLastError  ID
+(  
+)  
+relop  EQ
+relop  EQ
+ERROR_SUCCESS  ID
+)  
+;  
+"  
+"  
+CloseHandle  ID
+(  
+hToken  ID
+)  
+;  
+"  
+}  
+"  
+return  KEYWORD
+(  
+fOk  ID
+)  
+;  
+}  
+int  KEYWORD
+main  KEYWORD
+(  
+int  KEYWORD
+argc  ID
+,  
+char  ID
+*  
+argv  ID
+"  
+"  
+)  
+{  
+"  
+if  KEYWORD
+(  
+argc  ID
+!  
+relop  EQ
+3  NUM
+)  
+"  
+{  
+"  
+"  
+printf  ID
+(  
+"  
+Use  ID
+CreateRemoteThread  ID
+to  ID
+inject  ID
+dll  ID
+,  
+usually  ID
+used  ID
+under  ID
+XP  ID
+"  
+"  
+n  ID
+"  
+n  ID
+"  
+)  
+;  
+"  
+"  
+printf  ID
+(  
+"  
+Usage  ID
+:  
+"  
+n  ID
+"  
+)  
+;  
+"  
+"  
+printf  ID
+(  
+"  
+"  
+s  ID
+relop  LT
+PID  ID
+relop  GT
+relop  LT
+Dll  ID
+Path  ID
+relop  GT
+"  
+n  ID
+"  
+,  
+argv  ID
+"  
+0  NUM
+"  
+)  
+;  
+"  
+"  
+return  KEYWORD
+0  NUM
+;  
+"  
+}  
+"  
+if  KEYWORD
+(  
+!  
+EnableDebugPrivilege  ID
+(  
+TRUE  ID
+)  
+)  
+"  
+{  
+"  
+"  
+printf  ID
+(  
+"  
+"  
+!  
+"  
+AdjustTokenPrivileges  ID
+Failed  ID
+"  
+relop  LT
+"  
+d  ID
+relop  GT
+"  
+n  ID
+"  
+,  
+GetLastError  ID
+(  
+)  
+)  
+;  
+"  
+}  
+"  
+if  KEYWORD
+(  
+!  
+InjectDll  ID
+(  
+(  
+DWORD  ID
+)  
+atoi  ID
+(  
+argv  ID
+"  
+1  NUM
+"  
+)  
+,  
+argv  ID
+"  
+2  NUM
+"  
+)  
+)  
+"  
+{  
+"  
+"  
+printf  ID
+(  
+"  
+"  
+!  
+"  
+InjectDll  ID
+error  ID
+"  
+n  ID
+"  
+)  
+;  
+"  
+"  
+return  KEYWORD
+1  NUM
+;  
+"  
+}  
+"  
+if  KEYWORD
+(  
+!  
+FreeDll  ID
+(  
+(  
+DWORD  ID
+)  
+atoi  ID
+(  
+argv  ID
+"  
+1  NUM
+"  
+)  
+,  
+argv  ID
+"  
+2  NUM
+"  
+)  
+)  
+"  
+{  
+"  
+"  
+printf  ID
+(  
+"  
+"  
+!  
+"  
+FreeDll  ID
+error  ID
+"  
+n  ID
+"  
+)  
+;  
+"  
+"  
+return  KEYWORD
+1  NUM
+;  
+"  
+}  
+"  
+printf  ID
+(  
+"  
+"  
++  
+"  
+InjectDll  ID
+success  ID
+"  
+n  ID
+"  
+)  
+;  
+"  
+return  KEYWORD
+0  NUM
+;  
+}  
+"  
+
+NUM: 22
+ID: 360
+KEYWORD: 34
+OP: 861
+COMMENT: 0(lines)
+ERROR: 0
